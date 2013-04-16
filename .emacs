@@ -39,6 +39,7 @@
 )
 (toggle-fullscreen)
 
+;;enable colors for term
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;;http://emacswiki.org/emacs/InteractivelyDoThings 
