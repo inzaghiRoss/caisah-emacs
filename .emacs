@@ -5,6 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(current-language-environment "UTF-8")
  '(custom-enabled-themes (quote (tango-dark)))
+ '(flycheck-highlighting-mode (quote lines))
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
@@ -14,6 +15,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flycheck-error-face ((t (:inherit error :background "gray27" :foreground "IndianRed1" :underline (:color "red" :style wave)))))
+ '(flycheck-warning-face ((t (:inherit warning :foreground "yellow1"))))
  '(term-color-blue ((t (:background "blue2" :foreground "orange")))))
 
 
@@ -33,14 +36,20 @@
 (defun toggle-fullscreen ()
   (interactive)
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-      		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
 )
 (toggle-fullscreen)
 
-;;enable colors for term
+;;add colors to shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;;package archive
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;;http://emacswiki.org/emacs/InteractivelyDoThings 
 (require 'ido)
@@ -62,5 +71,6 @@
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
+;;enable flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
- 
