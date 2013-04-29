@@ -42,6 +42,23 @@
 )
 (toggle-fullscreen)
 
+;;http://emacswiki.org/emacs/InteractivelyDoThings 
+(require 'ido)
+(ido-mode t)
+
+;;set ipython as default python shell
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+
 ;;add colors to shell
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
@@ -51,9 +68,6 @@
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-;;http://emacswiki.org/emacs/InteractivelyDoThings 
-(require 'ido)
-(ido-mode t)
 
 ;;el-get
 ;;https://github.com/dimitri/el-get
@@ -74,18 +88,6 @@
 ;;enable flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;enable autopair
-(autopair-global-mode t) ;; to enable in all buffers
+(require 'autopair)
+(autopair-global-mode) ;; to enable in all buffers
 
-;;set ipython as default python shell
-(setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
-   "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
-   "';'.join(module_completion('''%s'''))\n"
- python-shell-completion-string-code
-   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
