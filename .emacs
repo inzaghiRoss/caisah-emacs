@@ -91,3 +91,5 @@
 (require 'autopair)
 (autopair-global-mode) ;; to enable in all buffers
 
+;;enable linum mode
+(add-hook 'python-mode-hook 'linum-mode)
