@@ -16,8 +16,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(flycheck-error-face ((t (:inherit error :background "gray27" :foreground "IndianRed1" :underline (:color "red" :style wave)))))
- '(flycheck-warning-face ((t (:inherit warning :foreground "yellow1"))))
- '(term-color-blue ((t (:background "blue2" :foreground "orange")))))
+ '(flycheck-warning-face ((t (:inherit warning :foreground "yellow1")))))
 
 
 ;;desktop mode (save buffers on exit)
@@ -60,7 +59,7 @@
    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 ;;add colors to shell
-(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(setq ansi-term-color-vector [unspecified "#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#DD6600" "#dc8cc3" "#93e0e3" "#dcdccc"])
 
 ;;package archive
 (require 'package)
